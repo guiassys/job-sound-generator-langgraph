@@ -1,0 +1,11 @@
+langgraph
+langchain
+langchain-core
+langchain-ollama
+torch
+transformers
+numpy
+scipy
+pydub
+pyyaml
+python-dotenv
