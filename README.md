@@ -24,6 +24,17 @@ O projeto utiliza um pipeline sequencial controlado por um Grafo de Estados (*St
 
 ---
 
+## 🔄 Fluxos de Geração Disponíveis
+
+O projeto agora suporta diferentes fluxos de geração através do padrão Strategy:
+
+- **Fluxo Original (3 passos)**: Pipeline completo com composição detalhada
+- **Fluxo Rápido (2 passos)**: Versão simplificada para processamento mais rápido
+
+Ao executar o projeto, você poderá selecionar qual fluxo deseja utilizar.
+
+---
+
 ## 📂 Estrutura do Projeto
 
 ```text
@@ -37,7 +48,8 @@ job-sound-generator-langgraph/
 │   ├── state.py          # Contrato de dados compartilhado (TypedDict) que trafega no grafo
 │   ├── tools.py          # Ferramenta de síntese de áudio (MusicGen) e gestão de VRAM da GPU
 │   ├── nodes.py          # Funções de cada etapa executando via ChatOllama
-│   └── graph.py          # Montagem, interligação das arestas e compilação do StateGraph
+│   ├── graph.py          # Montagem, interligação das arestas e compilação do StateGraph
+│   └── flow_strategy.py  # Implementação do padrão Strategy para diferentes fluxos de geração
 ├── .env                  # Variáveis de ambiente (URL do Ollama e modelo)
 ├── README.md             # Documentação do projeto
 ├── .gitignore            # Contrato de arquivos a serem ignorados pelo Git
@@ -94,4 +106,8 @@ Com o ambiente virtual ativado (`source venv/bin/activate`), basta executar o sc
 python main.py
 ```
 
-O pipeline será iniciado, os agentes realizarão o planejamento musical, a síntese de áudio na GPU e a documentação passo a passo. Os arquivos gerados serão salvos automaticamente no diretório `output/` utilizando um prefixo unificado com timestamp e slug de estilo (ex: `20261113_183000_jogo-de-aventura.mp3` e `20261113_183000_jogo-de-aventura.md`).
+O pipeline será iniciado, e você poderá escolher entre os fluxos disponíveis:
+- Fluxo Original (3 etapas) - para processamento detalhado
+- Fluxo Rápido (2 etapas) - para processamento mais rápido
+
+Os agentes realizarão o planejamento musical, a síntese de áudio na GPU e a documentação passo a passo. Os arquivos gerados serão salvos automaticamente no diretório `output/` utilizando um prefixo unificado com timestamp e slug de estilo (ex: `20261113_183000_jogo-de-aventura.mp3` e `20261113_183000_jogo-de-aventura.md`).
